@@ -1,6 +1,5 @@
 package de.bitmarck.bms.base32
 
-import de.bitmarck.bms.base32.Base32Check1._
 import org.scalacheck.Gen
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
@@ -62,20 +61,20 @@ class Base32Check1Spec extends AnyWordSpec {
     )
 
     "compute a checksum" in {
-      forAll(tests)((payload, check1) => compute(payload) shouldBe check1)
+      forAll(tests)((payload, check1) => Base32Check1.compute(payload) shouldBe check1)
     }
 
     "accept a valid checksum" in {
-      forAll(tests)((payload, check1) => validate(payload + check1) shouldBe true)
+      forAll(tests)((payload, check1) => Base32Check1.validate(payload + check1) shouldBe true)
     }
 
     "reject an invalid checksum" in {
-      forAll(tests)((payload, check1) => whenever(check1 != 'A')(validate(payload) shouldBe false))
+      forAll(tests)((payload, check1) => whenever(check1 != 'A')(Base32Check1.validate(payload) shouldBe false))
     }
 
     "throw up on input characters not in the Base32 alphabet" in {
       val invalid = Table("payload") ++ (Char.MinValue to Char.MaxValue).map("" + _).filterNot(Base32Alphabet.contains)
-      forAll(invalid)(payload => intercept[IllegalArgumentException](compute(payload)))
+      forAll(invalid)(payload => intercept[IllegalArgumentException](Base32Check1.compute(payload)))
     }
 
     // https://espadrine.github.io/blog/posts/a-base32-checksum.html
@@ -143,7 +142,7 @@ class Base32Check1Spec extends AnyWordSpec {
   private def assertAll(tests: Seq[(String, String)]): Unit = {
     forAll(Table("original" -> "modified") ++ tests) { (original, modified) =>
       whenever(original != modified) {
-        compute(original) should not be compute(modified)
+        Base32Check1.compute(original) should not be Base32Check1.compute(modified)
       }
     }
   }
