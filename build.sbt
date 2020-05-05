@@ -2,7 +2,8 @@ organization := "de.bitmarck.bms"
 name := "base32check-scala"
 version := "0.0.1-SNAPSHOT"
 
-scalaVersion := "2.13.1"
+scalaVersion := "2.13.2"
+crossScalaVersions := Seq("2.11.12", "2.12.11", "2.13.2")
 
 homepage := Some(url("https://base32check.org"))
 scmInfo := Some(
@@ -11,6 +12,8 @@ scmInfo := Some(
     "scm:git@github.com:bitmarck-service/base32check-scala.git"
   )
 )
+
+sonatypeProfileName := "de.bitmarck.bms"
 
 libraryDependencies += "org.scalatestplus" %% "scalacheck-1-14" % "3.1.1.1" % Test
 
@@ -23,8 +26,6 @@ version := {
 }
 
 publishMavenStyle := true
-
-sonatypeProfileName := "de.bitmarck.bms"
 
 publishTo := Some(
   if (isSnapshot.value)
