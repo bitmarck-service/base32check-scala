@@ -8,7 +8,7 @@ object Base32 {
   /**
    * Selects at most 8 bits from a byte array as a right aligned byte
    */
-  private def bitsAtOffset(bytes: Array[Byte], bitIndex: Long, length: Int): Int = {
+  private def bitsAtOffset(bytes: IndexedSeq[Byte], bitIndex: Long, length: Int): Int = {
     val i = (bitIndex / 8).toInt
     if (i >= bytes.length) 0
     else {
@@ -27,7 +27,7 @@ object Base32 {
    *
    * @group conversions
    */
-  def encode(bytes: Array[Byte], alphabet: Base32Alphabet = Alphabets.Base32RFC4648): String = {
+  def encode(bytes: IndexedSeq[Byte], alphabet: Base32Alphabet = Alphabets.Base32RFC4648): String = {
     val bitsPerChar = 5
     val bytesPerGroup = 5
     val charsPerGroup = bytesPerGroup * 8 / bitsPerChar

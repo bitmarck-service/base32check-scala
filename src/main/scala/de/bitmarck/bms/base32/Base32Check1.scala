@@ -19,7 +19,7 @@ trait Base32Check1 {
 
   final def validate(payload: String,
                      alphabet: Base32Alphabet = Alphabets.Base32RFC4648): Boolean =
-    compute(payload, alphabet) == 'A'
+    compute(payload, alphabet) == alphabet.toChar(0)
 
   final def compute(payload: String,
                     alphabet: Base32Alphabet = Alphabets.Base32RFC4648): Char = {
