@@ -12,6 +12,7 @@ scmInfo := Some(
     "scm:git@github.com:bitmarck-service/base32check-scala.git"
   )
 )
+licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
 
 libraryDependencies += "org.scalatestplus" %% "scalacheck-1-14" % "3.1.1.1" % Test
 
