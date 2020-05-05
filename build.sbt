@@ -13,8 +13,6 @@ scmInfo := Some(
   )
 )
 
-sonatypeProfileName := "de.bitmarck.bms"
-
 libraryDependencies += "org.scalatestplus" %% "scalacheck-1-14" % "3.1.1.1" % Test
 
 
@@ -24,6 +22,8 @@ version := {
   val tagPrefix = "refs/tags/"
   sys.env.get("CI_VERSION").filter(_.startsWith(tagPrefix)).map(_.drop(tagPrefix.length)).getOrElse(version.value)
 }
+
+sonatypeProfileName := organization.value
 
 publishMavenStyle := true
 
