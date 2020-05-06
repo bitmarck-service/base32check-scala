@@ -30,6 +30,11 @@ publishMavenStyle := true
 
 publishTo := sonatypePublishToBundle.value
 
+sonatypeBundleRelease := Def.taskDyn {
+  if (isSnapshot.value) Def.task("")
+  else Def.task(sonatypeBundleRelease.value)
+}.value
+
 credentials ++= (for {
   username <- sys.env.get("SONATYPE_USERNAME")
   password <- sys.env.get("SONATYPE_PASSWORD")
