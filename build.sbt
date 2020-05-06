@@ -5,6 +5,8 @@ version := "0.0.1-SNAPSHOT"
 scalaVersion := "2.13.2"
 crossScalaVersions := Seq("2.11.12", "2.12.11", "2.13.2")
 
+licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
+
 homepage := Some(url("https://base32check.org"))
 scmInfo := Some(
   ScmInfo(
@@ -12,7 +14,9 @@ scmInfo := Some(
     "scm:git@github.com:bitmarck-service/base32check-scala.git"
   )
 )
-licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
+developers := List(
+  Developer(id = "u016595", name = "Pierre Kisters", email = "pierre.kisters@bitmarck.de", url = url("https://github.com/LolHens/"))
+)
 
 libraryDependencies += "org.scalatestplus" %% "scalacheck-1-14" % "3.1.1.1" % Test
 
