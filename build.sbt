@@ -3,7 +3,7 @@ name := "base32check-scala"
 version := "0.0.1-SNAPSHOT"
 
 scalaVersion := "2.13.2"
-crossScalaVersions := Seq("2.11.12", "2.12.11", "2.13.2")
+crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.11", "2.13.2")
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
 
