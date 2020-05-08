@@ -1,6 +1,6 @@
 organization := "de.bitmarck.bms"
 name := "base32check-scala"
-version := "0.0.1-SNAPSHOT"
+version := "0.0.3-SNAPSHOT"
 
 scalaVersion := "2.13.2"
 crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.11", "2.13.2")
