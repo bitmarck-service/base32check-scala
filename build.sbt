@@ -28,8 +28,6 @@ version := {
   sys.env.get("CI_VERSION").filter(_.startsWith(tagPrefix)).map(_.drop(tagPrefix.length)).getOrElse(version.value)
 }
 
-sonatypeProfileName := organization.value
-
 publishMavenStyle := true
 
 publishTo := sonatypePublishToBundle.value
