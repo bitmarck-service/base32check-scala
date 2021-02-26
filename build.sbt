@@ -2,8 +2,8 @@ organization := "de.bitmarck.bms"
 name := "base32check-scala"
 version := "0.0.3-SNAPSHOT"
 
-scalaVersion := "2.13.3"
-crossScalaVersions := Seq("2.13.5", "2.11.12", "2.12.12", scalaVersion.value)
+scalaVersion := "2.13.5"
+crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.12", scalaVersion.value)
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
 
