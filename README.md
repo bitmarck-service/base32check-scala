@@ -7,5 +7,17 @@
 This project is a Scala implementation of [base32](https://en.wikipedia.org/wiki/Base32) as specified in [RFC 4648](https://tools.ietf.org/html/rfc4648#section-6) and the [base32check1](https://base32check.org/) algorithm.
 For more information see https://base32check.org.
 
+## Usage
+
+### build.sbt
+
+```sbt
+// use this snippet for the JVM
+libraryDependencies += "de.bitmarck.bms" %% "base32check-scala" % "0.0.3"
+
+// use this snippet for JS, or cross-building
+libraryDependencies += "de.bitmarck.bms" %%% "base32check-scala" % "0.0.3"
+```
+
 ## License
 This project uses the Apache 2.0 License. See the file called LICENSE.
