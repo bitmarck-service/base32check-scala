@@ -1,7 +1,5 @@
-lazy val scalaVersions = Seq("2.13.6", "2.12.14", "2.11.12")
-
-ThisBuild / scalaVersion := scalaVersions.head
-ThisBuild / versionScheme := Some("early-semver")
+lazy val scalaVersions = Seq("2.13.5", "2.12.14", "2.11.12")
+lazy val scalaVersionsJvm = Seq("2.10.7")
 
 lazy val commonSettings: SettingsDefinition = Def.settings(
   organization := "de.bitmarck.bms",
@@ -48,21 +46,21 @@ lazy val commonSettings: SettingsDefinition = Def.settings(
 )
 
 name := (core.projectRefs.head / name).value
+ThisBuild / scalaVersion := scalaVersions.head
+ThisBuild / versionScheme := Some("early-semver")
 
-lazy val root: Project =
-  project
-    .in(file("root"))
-    .settings(commonSettings)
-    .settings(
-      publishArtifact := false,
-      publish / skip := true
-    )
-    .aggregate(core.projectRefs: _*)
+lazy val root: Project = project.in(file("."))
+  .settings(commonSettings)
+  .settings(
+    publishArtifact := false,
+    publish / skip := true
+  )
+  .aggregate(core.projectRefs: _*)
 
-lazy val core = projectMatrix.in(file("."))
+lazy val core = projectMatrix.in(file("core"))
   .settings(commonSettings)
   .settings(
     name := "base32check-scala",
   )
-  .jvmPlatform(scalaVersions :+ "2.10.7")
+  .jvmPlatform(scalaVersions ++ scalaVersionsJvm)
   .jsPlatform(scalaVersions)
