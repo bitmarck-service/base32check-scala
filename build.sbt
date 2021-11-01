@@ -1,4 +1,4 @@
-lazy val scalaVersions = Seq("2.13.5", "2.12.15", "2.11.12")
+lazy val scalaVersions = Seq("2.13.7", "2.12.15", "2.11.12")
 lazy val scalaVersionsJvm = Seq("2.10.7")
 
 lazy val commonSettings: SettingsDefinition = Def.settings(
