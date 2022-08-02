@@ -25,7 +25,7 @@ lazy val commonSettings: SettingsDefinition = Def.settings(
   libraryDependencies ++= Seq(
     "ch.qos.logback" % "logback-classic" % "1.2.11" % Test,
     "org.scalatestplus" %%% "scalacheck-1-14" % "3.2.2.0" % Test,
-    "org.scalatest" %%% "scalatest" % "3.2.12" % Test,
+    "org.scalatest" %%% "scalatest" % "3.2.13" % Test,
   ),
 
   Compile / doc / sources := Seq.empty,
