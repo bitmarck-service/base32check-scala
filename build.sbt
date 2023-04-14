@@ -1,10 +1,21 @@
-lazy val scalaVersions = Seq("2.13.10", "2.12.17")
+lazy val scalaVersions = Seq("3.2.2", "2.13.10", "2.12.17")
 lazy val scalaVersionsJvm = Seq("2.11.12", "2.10.7")
 
+ThisBuild / scalaVersion := scalaVersions.head
+ThisBuild / versionScheme := Some("early-semver")
+ThisBuild / organization := "de.bitmarck.bms"
+name := (core.projectRefs.head / name).value
+
+val V = new {
+  val betterMonadicFor = "0.3.1"
+  val logbackClassic = "1.4.6"
+  val scalacheck = "3.2.2.0"
+  val scalatest = "3.2.15"
+}
+
 lazy val commonSettings: SettingsDefinition = Def.settings(
-  organization := "de.bitmarck.bms",
   version := {
-    val Tag = "refs/tags/(.*)".r
+    val Tag = "refs/tags/v?([0-9]+(?:\\.[0-9]+)+(?:[+-].*)?)".r
     sys.env.get("CI_VERSION").collect { case Tag(tag) => tag }
       .getOrElse("0.0.1-SNAPSHOT")
   },
@@ -23,10 +34,15 @@ lazy val commonSettings: SettingsDefinition = Def.settings(
   ),
 
   libraryDependencies ++= Seq(
-    "ch.qos.logback" % "logback-classic" % "1.4.6" % Test,
-    "org.scalatestplus" %%% "scalacheck-1-14" % "3.2.2.0" % Test,
-    "org.scalatest" %%% "scalatest" % "3.2.15" % Test,
+    "ch.qos.logback" % "logback-classic" % V.logbackClassic % Test,
+    "org.scalatestplus" %%% "scalacheck-1-14" % V.scalacheck % Test,
+    "org.scalatest" %%% "scalatest" % V.scalatest % Test,
   ),
+
+  libraryDependencies ++= virtualAxes.?.value.getOrElse(Seq.empty).collectFirst {
+    case VirtualAxis.ScalaVersionAxis(version, _) if version.startsWith("2.") =>
+      compilerPlugin("com.olegpy" %% "better-monadic-for" % V.betterMonadicFor)
+  },
 
   Compile / doc / sources := Seq.empty,
 
@@ -34,20 +50,18 @@ lazy val commonSettings: SettingsDefinition = Def.settings(
 
   publishTo := sonatypePublishToBundle.value,
 
+  sonatypeCredentialHost := "oss.sonatype.org",
+
   credentials ++= (for {
     username <- sys.env.get("SONATYPE_USERNAME")
     password <- sys.env.get("SONATYPE_PASSWORD")
   } yield Credentials(
     "Sonatype Nexus Repository Manager",
-    "oss.sonatype.org",
+    sonatypeCredentialHost.value,
     username,
     password
   )).toList
 )
-
-name := (core.projectRefs.head / name).value
-ThisBuild / scalaVersion := scalaVersions.head
-ThisBuild / versionScheme := Some("early-semver")
 
 lazy val root: Project = project.in(file("."))
   .settings(commonSettings)

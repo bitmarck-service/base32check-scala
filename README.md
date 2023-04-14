@@ -1,5 +1,6 @@
 # base32check-scala
-[![Test Workflow](https://github.com/bitmarck-service/base32check-scala/workflows/test/badge.svg)](https://github.com/bitmarck-service/base32check-scala/actions?query=workflow%3Atest)
+
+[![test](https://github.com/bitmarck-service/base32check-scala/actions/workflows/test.yml/badge.svg)](https://github.com/bitmarck-service/base32check-scala/actions/workflows/test.yml)
 [![Release Notes](https://img.shields.io/github/release/bitmarck-service/base32check-scala.svg?maxAge=3600)](https://github.com/bitmarck-service/base32check-scala/releases/latest)
 [![Maven Central](https://img.shields.io/maven-central/v/de.bitmarck.bms/base32check-scala_2.13)](https://search.maven.org/artifact/de.bitmarck.bms/base32check-scala_2.13)
 [![Apache License 2.0](https://img.shields.io/github/license/bitmarck-service/base32check-scala.svg?maxAge=3600)](https://www.apache.org/licenses/LICENSE-2.0)
