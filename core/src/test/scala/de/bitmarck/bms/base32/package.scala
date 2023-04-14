@@ -14,5 +14,4 @@ package object base32 {
     def matches(source: CharSequence): Boolean =
       self.pattern.matcher(source).matches()
   }
-
 }

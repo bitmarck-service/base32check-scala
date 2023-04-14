@@ -1,5 +1,5 @@
 lazy val scalaVersions = Seq("3.2.2", "2.13.10", "2.12.17")
-lazy val scalaVersionsJvm = Seq("2.11.12", "2.10.7")
+lazy val scalaVersionsJvm = Seq("2.11.12")
 
 ThisBuild / scalaVersion := scalaVersions.head
 ThisBuild / versionScheme := Some("early-semver")
@@ -9,8 +9,7 @@ name := (core.projectRefs.head / name).value
 val V = new {
   val betterMonadicFor = "0.3.1"
   val logbackClassic = "1.4.6"
-  val scalacheck = "3.2.2.0"
-  val scalatest = "3.2.15"
+  val munit = "0.7.29"
 }
 
 lazy val commonSettings: SettingsDefinition = Def.settings(
@@ -35,9 +34,10 @@ lazy val commonSettings: SettingsDefinition = Def.settings(
 
   libraryDependencies ++= Seq(
     "ch.qos.logback" % "logback-classic" % V.logbackClassic % Test,
-    "org.scalatestplus" %%% "scalacheck-1-14" % V.scalacheck % Test,
-    "org.scalatest" %%% "scalatest" % V.scalatest % Test,
+    "org.scalameta" %%% "munit" % V.munit % Test,
   ),
+
+  testFrameworks += new TestFramework("munit.Framework"),
 
   libraryDependencies ++= virtualAxes.?.value.getOrElse(Seq.empty).collectFirst {
     case VirtualAxis.ScalaVersionAxis(version, _) if version.startsWith("2.") =>
