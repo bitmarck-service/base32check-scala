@@ -14,10 +14,10 @@ For more information see https://base32check.org.
 
 ```sbt
 // use this snippet for the JVM
-libraryDependencies += "de.bitmarck.bms" %% "base32check-scala" % "0.0.3"
+libraryDependencies += "de.bitmarck.bms" %% "base32check-scala" % "0.1.0"
 
 // use this snippet for JS, or cross-building
-libraryDependencies += "de.bitmarck.bms" %%% "base32check-scala" % "0.0.3"
+libraryDependencies += "de.bitmarck.bms" %%% "base32check-scala" % "0.1.0"
 ```
 
 ## License
