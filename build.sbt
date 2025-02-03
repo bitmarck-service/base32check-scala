@@ -1,4 +1,4 @@
-lazy val scalaVersions = Seq("3.3.4", "2.13.13", "2.12.19")
+lazy val scalaVersions = Seq("3.3.5", "2.13.13", "2.12.19")
 lazy val scalaVersionsJvm = Seq("2.11.12")
 
 ThisBuild / scalaVersion := scalaVersions.head
